@@ -12,6 +12,10 @@ input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
 if method == "CNN":
     st.write("You selected Emotion Recognition with CNN.")
 # You can add code here to run CNN-based emotion recognition.
+elif method == "KNN":
+    st.write("You selected Emotion Recognition with KNN.")
+# You can add code here to run KNN-based emotion recognition.
+
 
 
 
