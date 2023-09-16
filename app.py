@@ -3,7 +3,7 @@ import streamlit as st
 
 
 
-def main():
+
     st.title("Emotion Recognition Application")
     st.sidebar.header("Choose an Option")
 
@@ -29,5 +29,4 @@ def main():
     if uploaded_image is not None:
             # You can add code here to process the uploaded image.
 
-    if __name__ == "__main__":
-    main()
+  
