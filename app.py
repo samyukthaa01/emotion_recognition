@@ -26,8 +26,8 @@ def main():
         # You can add code here to capture webcam input.
     elif input_type == "Upload Image":
         uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
-        if uploaded_image is not None:
+    if uploaded_image is not None:
             # You can add code here to process the uploaded image.
 
-if __name__ == "__main__":
+    if __name__ == "__main__":
     main()
