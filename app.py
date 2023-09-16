@@ -8,6 +8,11 @@ st.sidebar.header("Choose an Option")
 method = st.sidebar.radio("Choose Emotion Recognition Method", ("CNN", "KNN"))
 # Add a radio button to choose between webcam and image upload
 input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
+# Based on user selections, perform the chosen action
+if method == "CNN":
+    st.write("You selected Emotion Recognition with CNN.")
+# You can add code here to run CNN-based emotion recognition.
+
 
 
 
