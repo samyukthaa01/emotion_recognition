@@ -15,6 +15,9 @@ if method == "CNN":
 elif method == "KNN":
     st.write("You selected Emotion Recognition with KNN.")
 # You can add code here to run KNN-based emotion recognition.
+if input_type == "Webcam":
+     st.write("You selected Webcam Input.")
+# You can add code here to capture webcam input.
 
 
 
