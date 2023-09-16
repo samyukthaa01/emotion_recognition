@@ -18,7 +18,10 @@ elif method == "KNN":
 if input_type == "Webcam":
      st.write("You selected Webcam Input.")
 # You can add code here to capture webcam input.
-
+elif input_type == "Upload Image":
+     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+if uploaded_image is not None:
+# You can add code here to process the uploaded image.
 
 
 
