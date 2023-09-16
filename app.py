@@ -1,7 +1,5 @@
-# import module
-import streamlit as st
-
-
+    # import module
+    import streamlit as st
 
 
     st.title("Emotion Recognition Application")
