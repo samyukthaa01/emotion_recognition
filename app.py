@@ -1,6 +1,8 @@
 # import module
 import streamlit as st
 
+import streamlit as st
+
 def main():
     st.title("Emotion Recognition Application")
     st.sidebar.header("Choose an Option")
