@@ -43,6 +43,10 @@ def preprocess_image(uploaded_image):
 # import the streamlit library
 import streamlit as st
 
+# Load the model
+model = load_and_inspect_model_json()
+
+
 # give a title to our app
 st.title("Emotion Recognition Application")
 st.header("Choose an Option")
