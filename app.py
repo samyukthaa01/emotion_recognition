@@ -2,6 +2,8 @@ import numpy as np
 from PIL import Image
 import tensorflow as tf
 import pandas as pd
+from keras.models import model_from_json
+import cv2
 import json
 import keras
 import os
@@ -27,12 +29,19 @@ def load_and_inspect_model_json():
             # Print the content of model_json
             print("Model JSON content:", model_json)
 
+            return model  # Return the loaded model
+
         except Exception as e:
             # Handle any exceptions or errors that might occur during model loading
             print("Error loading the model:", str(e))
 
     else:
         print("Model files not found. Please check the file paths.")
+        return None  # Return None in case of missing files
+
+# Load the model
+model = load_and_inspect_model_json()
+
         
 # Define a mapping of class labels to human-readable emotions
 class_emotions = {
@@ -58,7 +67,7 @@ def preprocess_image(uploaded_image):
 import streamlit as st
 
 # Load the model
-model = load_and_inspect_model_json()
+# model = load_and_inspect_model_json()
 
 # Define a variable to store the uploaded image
 uploaded_image = None  # Initialize to None
