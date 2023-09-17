@@ -9,27 +9,22 @@ import keras
 import os
 import requests
 
-# Function to load and inspect model JSON
-def load_and_inspect_model_json():
-    # Replace these with the raw GitHub URLs of your model files
-    model_json_url = "https://github.com/samyukthaa01/emotion_recognition/blob/main/model.json"
-    model_weights_url = "https://github.com/samyukthaa01/emotion_recognition/blob/main/training_model_weights.h5"
+# Function to load and inspect model JSON and weights
+def load_and_inspect_model():
+    # Load the model architecture from JSON
+    with open("model.json", "r") as json_file:
+        model_json = json_file.read()
+    
+    # Reconstruct the model from the JSON
+    model = tf.keras.models.model_from_json(model_json)
+    
+    # Load the model weights
+    model.load_weights("training_model_weights.h5")  # Make sure the weights file name matches
 
-    try:
-        # Download the model JSON from GitHub
-        model_json = requests.get(model_json_url).json()
-
-        # Load the model from the JSON and weights
-        model = keras.models.model_from_json(model_json)
-        model.load_weights(model_weights_url)
-
-        return model  # Return the loaded model
-
-    except Exception as e:
-        print("Error loading the model:", str(e))
+    return model
 
 # Load the model
-model = load_and_inspect_model_json()
+model = load_and_inspect_model()
    
 # Define a mapping of class labels to human-readable emotions
 class_emotions = {
