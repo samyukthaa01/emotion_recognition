@@ -59,26 +59,28 @@ import streamlit as st
 # Load the model
 model = load_and_inspect_model_json()
 
+# Define a variable to store the uploaded image
+uploaded_image = None  # Initialize to None
+
 if model is not None:
     # give a title to our app
     st.title("Emotion Recognition Application")
     st.header("Choose an Option")
     # Add a radio button to choose between CNN and KNN
     method = st.sidebar.radio("Choose Emotion Recognition Method", ("CNN", "KNN"))
-    # Add a radio button to choose between webcam and image upload
-    input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
-
-    # Define a variable to store the uploaded image
-    uploaded_image = None  # Initialize to None
-    input_type = None  # Initialize with a default value
+    
     # Display the file upload button for image selection
-if input_type == "Upload Image":
-    st.write("You selected Image Uploading.")
-    uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+    input_type = None  # Initialize within this scope
+    if method == "CNN":
+        input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
+
+    if input_type == "Upload Image":
+        st.write("You selected Image Uploading.")
+        uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
 # Add a submit button to trigger CNN inference
 if st.button("Submit"):
-    if method == "CNN" and uploaded_image is not None:
+    if model is not None and method == "CNN" and uploaded_image is not None:
         st.write("You selected Emotion Recognition with CNN.")
         st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
         processed_image = preprocess_image(uploaded_image)
@@ -93,11 +95,12 @@ if st.button("Submit"):
     elif method == "KNN":
         st.write("You selected Emotion Recognition with KNN.")
         # You can add code here to run KNN-based emotion recognition.
-    elif input_type == "Webcam":
+    elif model is not None and input_type == "Webcam":
         st.write("You selected Webcam Input.")
         # You can add code here to capture webcam input.
 
-    # Optionally, you can include a message to instruct the user to click the submit button.
+
+        # Optionally, you can include a message to instruct the user to click the submit button.
     st.write("Click the 'Submit' button to perform the selected action.")
 else:
     st.error("Model failed to load. Please check the file paths or model format.")
