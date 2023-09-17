@@ -39,10 +39,10 @@ def preprocess_image(uploaded_image):
     img = img / 255.0  # Normalize pixel values (assuming your model expects values in [0, 1])
     img = np.expand_dims(img, axis=0)  # Add batch dimension
     return img
- 
+
 # import the streamlit library
 import streamlit as st
- 
+
 # give a title to our app
 st.title("Emotion Recognition Application")
 st.header("Choose an Option")
@@ -50,33 +50,38 @@ st.header("Choose an Option")
 method = st.sidebar.radio("Choose Emotion Recognition Method", ("CNN", "KNN"))
 # Add a radio button to choose between webcam and image upload
 input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
+
 # Define a variable to store the uploaded image
 uploaded_image = None  # Initialize to None
 
-# Based on user selections, perform the chosen action
-if method == "CNN":
-    st.write("You selected Emotion Recognition with CNN.")
-# Within the Streamlit code, when you handle image upload and perform inference:
-if method == "CNN" and input_type == "Upload Image" and uploaded_image is not None:
-    st.write("You selected Emotion Recognition with CNN.")
-    st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
-    processed_image = preprocess_image(uploaded_image)
-    prediction = model.predict(processed_image)
+# Add a submit button to trigger CNN inference
+if st.button("Submit"):
+    if method == "CNN":
+        st.write("You selected Emotion Recognition with CNN.")
+        # Within the Streamlit code, when you handle image upload and perform inference:
+        if method == "CNN" and input_type == "Upload Image" and uploaded_image is not None:
+            st.write("You selected Emotion Recognition with CNN.")
+            st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
+            processed_image = preprocess_image(uploaded_image)
+            prediction = model.predict(processed_image)
 
-    # Display the prediction results
-    st.write("Emotion Prediction:")
-    # Depending on your model's output format, you may need to interpret the prediction.
-    # For example, if it's a classification task, you can display class labels and probabilities.
-    st.write(prediction)
-elif method == "KNN":
-    st.write("You selected Emotion Recognition with KNN.")
-# You can add code here to run KNN-based emotion recognition.
-if input_type == "Webcam":
-     st.write("You selected Webcam Input.")
-# You can add code here to capture webcam input.
-elif input_type == "Upload Image":
-     st.write("You selected Image Uploading.")
-     uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+            # Display the prediction results
+            st.write("Emotion Prediction:")
+            # Depending on your model's output format, you may need to interpret the prediction.
+            # For example, if it's a classification task, you can display class labels and probabilities.
+            st.write(prediction)
+    elif method == "KNN":
+        st.write("You selected Emotion Recognition with KNN.")
+        # You can add code here to run KNN-based emotion recognition.
+    elif input_type == "Webcam":
+        st.write("You selected Webcam Input.")
+        # You can add code here to capture webcam input.
+    elif input_type == "Upload Image":
+        st.write("You selected Image Uploading.")
+        uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+
+# Optionally, you can include a message to instruct the user to click the submit button.
+st.write("Click the 'Submit' button to perform the selected action.")
 
 
 
