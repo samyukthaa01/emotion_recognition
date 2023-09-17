@@ -78,18 +78,18 @@ if model is not None:
 
     # Add a submit button to trigger CNN inference
     if st.button("Submit"):
-        if method == "CNN" and uploaded_image is not None:
-        st.write("You selected Emotion Recognition with CNN.")
-        st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
-        processed_image = preprocess_image(uploaded_image)
-        prediction = model.predict(processed_image)
+       if method == "CNN" and uploaded_image is not None:
+           st.write("You selected Emotion Recognition with CNN.")
+           st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
+           processed_image = preprocess_image(uploaded_image)
+           prediction = model.predict(processed_image)
 
         # Assuming your model predicts class labels (e.g., 0 for Angry, 1 for Happy, etc.)
-        predicted_class = np.argmax(prediction)  # Get the index of the predicted class
-        predicted_emotion = class_emotions.get(predicted_class, "Unknown")
+           predicted_class = np.argmax(prediction)  # Get the index of the predicted class
+           predicted_emotion = class_emotions.get(predicted_class, "Unknown")
 
         # Display the prediction result as text
-        st.write("Predicted Emotion:", predicted_emotion)
+           st.write("Predicted Emotion:", predicted_emotion)
         elif method == "KNN":
             st.write("You selected Emotion Recognition with KNN.")
             # You can add code here to run KNN-based emotion recognition.
