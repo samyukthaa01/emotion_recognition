@@ -79,7 +79,7 @@ if input_type == "Upload Image":
 
 # Add a submit button to trigger CNN inference
 if st.button("Submit"):
-    if model is not None and method == "CNN" and uploaded_image is not None:
+    if method == "CNN" and uploaded_image is not None:
         st.write("You selected Emotion Recognition with CNN.")
         st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
         processed_image = preprocess_image(uploaded_image)
@@ -98,8 +98,8 @@ if st.button("Submit"):
         st.write("You selected Webcam Input.")
         # You can add code here to capture webcam input.
 
-        # Optionally, you can include a message to instruct the user to click the submit button.
- st.write("Click the 'Submit' button to perform the selected action.")
+       # Optionally, you can include a message to instruct the user to click the submit button.
+       st.write("Click the 'Submit' button to perform the selected action.")
 
 
 
