@@ -12,7 +12,7 @@ import requests
 # Function to load and inspect model JSON
 def load_and_inspect_model_json():
     # Replace these with the raw GitHub URLs of your model files
-    model_json_url = https://github.com/samyukthaa01/emotion_recognition/blob/main/model.json"
+    model_json_url = "https://github.com/samyukthaa01/emotion_recognition/blob/main/model.json"
     model_weights_url = "https://github.com/samyukthaa01/emotion_recognition/blob/main/training_model_weights.h5"
 
     try:
