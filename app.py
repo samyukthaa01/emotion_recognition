@@ -46,8 +46,8 @@ import streamlit as st
 # Load the model
 model = load_and_inspect_model_json()
 
-
-# give a title to our app
+if model is not None:
+    # give a title to our app
 st.title("Emotion Recognition Application")
 st.header("Choose an Option")
 # Add a radio button to choose between CNN and KNN
@@ -85,6 +85,9 @@ if st.button("Submit"):
 
 # Optionally, you can include a message to instruct the user to click the submit button.
 st.write("Click the 'Submit' button to perform the selected action.")
+else:
+    st.error("Model failed to load. Please check the file paths or model format.")
+
 
 
 
