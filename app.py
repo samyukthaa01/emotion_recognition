@@ -32,6 +32,17 @@ def load_and_inspect_model_json():
 
     else:
         print("Model files not found. Please check the file paths.")
+        
+# Define a mapping of class labels to human-readable emotions
+class_emotions = {
+    0: "Angry",
+    1: "Disgust",
+    2: "Fear",
+    3: "Happy",
+    4: "Neutral",
+    5: "Sad",
+    6: "Surprise"
+}
 
 # Now, you have your model loaded and ready for inference
 def preprocess_image(uploaded_image):
@@ -68,16 +79,17 @@ if model is not None:
     # Add a submit button to trigger CNN inference
     if st.button("Submit"):
         if method == "CNN" and uploaded_image is not None:
-            st.write("You selected Emotion Recognition with CNN.")
-            st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
-            processed_image = preprocess_image(uploaded_image)
-            prediction = model.predict(processed_image)
+        st.write("You selected Emotion Recognition with CNN.")
+        st.image(uploaded_image, caption='Uploaded Image', use_column_width=True)
+        processed_image = preprocess_image(uploaded_image)
+        prediction = model.predict(processed_image)
 
-            # Display the prediction results
-            st.write("Emotion Prediction:")
-            # Depending on your model's output format, you may need to interpret the prediction.
-            # For example, if it's a classification task, you can display class labels and probabilities.
-            st.write(prediction)
+        # Assuming your model predicts class labels (e.g., 0 for Angry, 1 for Happy, etc.)
+        predicted_class = np.argmax(prediction)  # Get the index of the predicted class
+        predicted_emotion = class_emotions.get(predicted_class, "Unknown")
+
+        # Display the prediction result as text
+        st.write("Predicted Emotion:", predicted_emotion)
         elif method == "KNN":
             st.write("You selected Emotion Recognition with KNN.")
             # You can add code here to run KNN-based emotion recognition.
