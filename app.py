@@ -91,10 +91,10 @@ if model is not None:
         # Display the prediction result as text
            st.write("Predicted Emotion:", predicted_emotion)
         elif method == "KNN":
-            st.write("You selected Emotion Recognition with KNN.")
+           st.write("You selected Emotion Recognition with KNN.")
             # You can add code here to run KNN-based emotion recognition.
         elif input_type == "Webcam":
-            st.write("You selected Webcam Input.")
+           st.write("You selected Webcam Input.")
             # You can add code here to capture webcam input.
 
     # Optionally, you can include a message to instruct the user to click the submit button.
