@@ -47,7 +47,7 @@ import streamlit as st
 model = load_and_inspect_model_json()
 
 if model is not None:
-    # give a title to our app
+# give a title to our app
 st.title("Emotion Recognition Application")
 st.header("Choose an Option")
 # Add a radio button to choose between CNN and KNN
