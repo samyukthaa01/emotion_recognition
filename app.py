@@ -8,8 +8,8 @@ import os
 # Function to load and inspect model JSON
 def load_and_inspect_model_json():
     # Load the JSON file containing the model architecture
-    model_json_path = "model.json"  # Replace with the correct path
-    model_weights_path = "training_modelw.h5"  # Replace with the correct path
+    model_json_path = "C:\\Users\\user\\Downloads\\model.json"  # Replace with the correct path
+    model_weights_path = "C:\\Users\\user\\Downloads\\training_modelw.h5"  # Replace with the correct path
 
     if os.path.exists(model_json_path) and os.path.exists(model_weights_path):
         with open(model_json_path, 'r') as json_file:
