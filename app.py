@@ -62,21 +62,20 @@ model = load_and_inspect_model_json()
 # Define a variable to store the uploaded image
 uploaded_image = None  # Initialize to None
 
-if model is not None:
-    # give a title to our app
-    st.title("Emotion Recognition Application")
-    st.header("Choose an Option")
-    # Add a radio button to choose between CNN and KNN
-    method = st.sidebar.radio("Choose Emotion Recognition Method", ("CNN", "KNN"))
+# give a title to our app
+st.title("Emotion Recognition Application")
+st.header("Choose an Option")
+# Add a radio button to choose between CNN and KNN
+method = st.sidebar.radio("Choose Emotion Recognition Method", ("CNN", "KNN"))
     
-    # Display the file upload button for image selection
-    input_type = None  # Initialize within this scope
-    if method == "CNN":
-        input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
+# Display the file upload button for image selection
+input_type = None  # Initialize within this scope
+if method == "CNN":
+    input_type = st.sidebar.radio("Choose Input Type", ("Webcam", "Upload Image"))
 
-    if input_type == "Upload Image":
-        st.write("You selected Image Uploading.")
-        uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
+if input_type == "Upload Image":
+    st.write("You selected Image Uploading.")
+    uploaded_image = st.file_uploader("Upload an image", type=["jpg", "png", "jpeg"])
 
 # Add a submit button to trigger CNN inference
 if st.button("Submit"):
@@ -99,13 +98,8 @@ if st.button("Submit"):
         st.write("You selected Webcam Input.")
         # You can add code here to capture webcam input.
 
-
         # Optionally, you can include a message to instruct the user to click the submit button.
-    st.write("Click the 'Submit' button to perform the selected action.")
-else:
-    st.error("Model failed to load. Please check the file paths or model format.")
-
-
+ st.write("Click the 'Submit' button to perform the selected action.")
 
 
 
