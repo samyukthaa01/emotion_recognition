@@ -1,16 +1,35 @@
-# Import the necessary libraries for model loading and JSON parsing
+import numpy as np
+from PIL import Image
 import tensorflow as tf
 import json
+import keras
+import os
 
-# Load the JSON file containing the model architecture
-with open('model.json', 'r') as json_file:
-    model_json = json.load(json_file)
+# Function to load and inspect model JSON
+def load_and_inspect_model_json():
+    # Load the JSON file containing the model architecture
+    model_json_path = "model.json"  # Replace with the correct path
+    model_weights_path = "training_modelw.h5"  # Replace with the correct path
 
-# Reconstruct the model from the JSON
-model = tf.keras.models.model_from_json(model_json)
+    if os.path.exists(model_json_path) and os.path.exists(model_weights_path):
+        with open(model_json_path, 'r') as json_file:
+            model_json = json.load(json_file)
 
-# Load the model weights
-model.load_weights('training_modelw.h5')
+        try:
+            # Attempt to reconstruct the model from the JSON
+            model = tf.keras.models.model_from_json(model_json)
+            # Load the model weights
+            model.load_weights(model_weights_path)
+
+            # Print the content of model_json
+            print("Model JSON content:", model_json)
+
+        except Exception as e:
+            # Handle any exceptions or errors that might occur during model loading
+            print("Error loading the model:", str(e))
+
+    else:
+        print("Model files not found. Please check the file paths.")
 
 # Now, you have your model loaded and ready for inference
 def preprocess_image(uploaded_image):
