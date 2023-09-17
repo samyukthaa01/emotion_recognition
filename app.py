@@ -7,43 +7,30 @@ import cv2
 import json
 import keras
 import os
+import requests
 
 # Function to load and inspect model JSON
 def load_and_inspect_model_json():
-    # Get the absolute paths of model files
-    model_json_path = os.path.abspath("model.json")
-    model_weights_path = os.path.abspath("training_modelw.h5")
+    # Replace these with the raw GitHub URLs of your model files
+    model_json_url = https://github.com/samyukthaa01/emotion_recognition/blob/main/model.json"
+    model_weights_url = "https://github.com/samyukthaa01/emotion_recognition/blob/main/training_model_weights.h5"
 
-    print("Model JSON path:", model_json_path)
-    print("Model weights path:", model_weights_path)
+    try:
+        # Download the model JSON from GitHub
+        model_json = requests.get(model_json_url).json()
 
-    if os.path.exists(model_json_path) and os.path.exists(model_weights_path):
-        with open(model_json_path, 'r') as json_file:
-            model_json = json.load(json_file)
+        # Load the model from the JSON and weights
+        model = keras.models.model_from_json(model_json)
+        model.load_weights(model_weights_url)
 
-        try:
-            # Attempt to reconstruct the model from the JSON
-            model = tf.keras.models.model_from_json(model_json)
-            # Load the model weights
-            model.load_weights(model_weights_path)
+        return model  # Return the loaded model
 
-            # Print the content of model_json
-            print("Model JSON content:", model_json)
-
-            return model  # Return the loaded model
-
-        except Exception as e:
-            # Handle any exceptions or errors that might occur during model loading
-            print("Error loading the model:", str(e))
-
-    else:
-        print("Model files not found. Please check the file paths.")
-        return None  # Return None in case of missing files
+    except Exception as e:
+        print("Error loading the model:", str(e))
 
 # Load the model
 model = load_and_inspect_model_json()
-
-        
+   
 # Define a mapping of class labels to human-readable emotions
 class_emotions = {
     0: "Angry",
