@@ -98,8 +98,8 @@ if st.button("Submit"):
         st.write("You selected Webcam Input.")
         # You can add code here to capture webcam input.
 
-       # Optionally, you can include a message to instruct the user to click the submit button.
-       st.write("Click the 'Submit' button to perform the selected action.")
+    # Optionally, you can include a message to instruct the user to click the submit button.
+    st.write("Click the 'Submit' button to perform the selected action.")
 
 
 
