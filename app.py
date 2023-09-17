@@ -10,9 +10,9 @@ import os
 
 # Function to load and inspect model JSON
 def load_and_inspect_model_json():
-    # Load the JSON file containing the model architecture
-    model_json_path = "model.json"  # Relative path to model.json
-    model_weights_path = "training_modelw.h5"  # Relative path to training_modelw.h5
+    # Get the absolute paths of model files
+    model_json_path = os.path.abspath("model.json")
+    model_weights_path = os.path.abspath("training_modelw.h5")
     print("Model JSON path:", model_json_path)
     print("Model weights path:", model_weights_path)
 
