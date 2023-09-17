@@ -70,7 +70,7 @@ if model is not None:
 
     # Define a variable to store the uploaded image
     uploaded_image = None  # Initialize to None
-
+    input_type = None  # Initialize with a default value
     # Display the file upload button for image selection
 if input_type == "Upload Image":
     st.write("You selected Image Uploading.")
